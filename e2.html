@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Join GitHub · GitHub</title>
+</head>
+<style>
+    * {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    body {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.so.qhimgs1.com%2Ft019a0cb0ec4fc81bbe.jpg&refer=http%3A%2F%2Fp2.so.qhimgs1.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1638432430&t=8b6511926cced39caf98c06c4f130e2a);
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: left;
+    }
+
+    .head {
+        padding: 15px;
+        height: 32px;
+        width: 1200px;
+    }
+
+    .logo {
+        float: left;
+        height: 32px;
+    }
+
+    .login {
+        float: right;
+        height: 32px;
+    }
+
+    .question {
+        display: inline;
+        color: #00cfc8;
+    }
+
+    .login a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        font-family: "Alliance No.1", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: 600px;
+    }
+
+    .register {
+
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        opacity: 0.95;
+        border-radius: 10px;
+
+        width: 606px;
+        height: 500px;
+        background-color: #0c162d;
+        border: 2px solid #525662;
+    }
+
+    .welcome h1 {
+        font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #627597 !important;
+    }
+
+    .welcome {
+        padding-top: 10px;
+        width: 556px;
+    }
+
+    .option {
+        box-sizing: border-box;
+    }
+
+    .word {
+        width: 556px;
+        height: 23px;
+        margin-top: 24px;
+    }
+
+    label {
+        color: #00cfc8;
+        font-weight: 600;
+        font-size: 16px;
+        font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+    }
+
+    .box {
+        align-items: center;
+        width: 556px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .guide {
+        box-sizing: border-box;
+        width: 18px;
+        color: #ea4aaa;
+    }
+
+    .box:hover .guide {
+        color: white;
+    }
+
+    input {
+        outline: none;
+        width: 530px;
+        height: 25px;
+        background-color: #0c162d;
+        -webkit-text-fill-color: #fff;
+        display: inline-block;
+        font-size: 16px;
+        border: none;
+        caret-color: white;
+        font-size: 16px;
+        font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+    }
+
+
+    input:-internal-autofill-previewed,
+    input:-internal-autofill-selected {
+        -webkit-text-fill-color: #FFFFFF !important;
+        transition: background-color 5000s ease-in-out 0s !important;
+    }
+
+    .button {
+        width: 556px;
+        height: 37.34px;
+        color: #627597;
+        background: none;
+        border-radius: 8px;
+        border: 1px solid #bacaee;
+        line-height: 37.34px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="head">
+        <div class="logo">
+            <a href="https://github.com/" aria-label="Homepage">
+                <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32"
+                    data-view-component="true">
+                    <path fill="#fff"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+
+        <div class="login">
+            <div class="question">Already have an account?</div>
+            <a href="#" class="color-fg-on-emphasis">
+                登录 →
+            </a>
+        </div>
+    </div>
+    <div class="register">
+        <div class="welcome">
+            <h1>Welcome to GitHub!</h1>
+            <h1>Let's begin the adventure</h1>
+        </div>
+        <form>
+            <div class="option">
+                <div class="word">
+                    <label>
+                        输入您的邮箱地址
+                    </label>
+                </div>
+                <div class="box" align="center">
+                    <span class="guide">→</span>
+                    <input name="email" autocomplete="on">
+                </div>
+            </div>
+            <div class="option">
+                <div class="word">
+                    <label>
+                        创建密码
+                    </label>
+                </div>
+                <div class="box" align="center">
+                    <span class="guide">→</span>
+                    <input type="password" autocomplete="on">
+                </div>
+            </div>
+            <div class="option">
+                <div class="word">
+
+                    <label>
+                        输入您的用户名
+                    </label>
+                </div>
+                <div class="box" align="center">
+                    <span class="guide">→</span>
+                    <input autocomplete="on">
+                </div>
+            </div>
+            <div class="option">
+                <div class="word">
+                    <label>
+                        输入您的姓名
+                    </label>
+                </div>
+                <div class="box" align="center">
+                    <span class="guide">→</span>
+                    <input autocomplete="on">
+                </div>
+            </div>
+
+            <div class="button">创建帐户</div>
+        </form>
+    </div>
+</body>
+
+</html>
