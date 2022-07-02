@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="cmn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>东莞理工学院·网络空间安全学院</title>
+    <link rel="icon" type="image/x-ico" href="logo.png" />
+</head>
+<style>
+    * {
+        margin: 0 auto;
+        padding: 0;
+        /* 清除间距 */
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .all {
+        height: 140px;
+        background: linear-gradient(90deg, #155799, #0a1054);
+        /* 顶部区域 */
+    }
+
+    .logo {
+        width: 1400px;
+        height: 80px;
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 80px;
+        color: #fff;
+        /* 左侧logo */
+    }
+
+    .logo_1 {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        /* 学院logo */
+    }
+
+    .logo_2 {
+        position: relative;
+        left: 40px;
+        top: 20px;
+        /* 学校logo */
+    }
+
+    .search {
+        float: right;
+        width: 500px;
+        height: 80px;
+        text-align: center;
+        /* 搜索与时间区域 */
+    }
+
+    .searchArea {
+        height: 50px;
+        line-height: 50px;
+        /* 搜索框 */
+    }
+
+    .date {
+        height: 30px;
+        font-size: 12px;
+        text-align: center;
+        line-height: 50px;
+        /* 显示当前时间 */
+    }
+
+    .dateSpan {
+        background-image: linear-gradient(#779be9, #4c53a5);
+        border-radius: 3px;
+        margin: 3px;
+        padding-left: 3px;
+        padding-right: 3px;
+        text-align: center;
+        /* 获取到的时间 */
+    }
+
+    .searchArea img {
+        position: relative;
+        /* 定位 */
+        top: 10px;
+        cursor: pointer;
+        /* 搜索图标 */
+    }
+
+    .searchArea input {
+        border-radius: 5px;
+        /* 圆角 */
+        outline: none;
+        /* 取消输入时边框 */
+        width: 0px;
+        height: 30px;
+        /* 背景颜色 */
+        -webkit-text-fill-color: rgb(0, 0, 0);
+        /* 文字颜色 */
+        font-size: 13px;
+        border: none;
+        /* 取消边框 */
+        caret-color: rgb(0, 0, 0);
+        /* 光标颜色 */
+        font-family: ui-monospace !important;
+    }
+
+    #searchInput.show {
+        width: 300px;
+        transition: .2s all;
+        box-shadow: 0 0 5px #8188f0;
+        border: 1px solid #8188f0;
+        /* 搜索框显示 */
+    }
+
+    #searchInput.hidden {
+        width: 0px;
+        transition: .2s all;
+        /* 搜索框消失 */
+    }
+
+    #searchIco.show {
+        box-shadow: 0 0 3rem #e0e0e0;
+        /* 设置阴影，第一个参数为水平阴影，第二个参数为垂直阴影，第三个为模糊距离，第四个为颜色 */
+        border-radius: 50%;
+        transition: .2s all;
+    }
+
+    .header {
+        width: 1503px;
+    }
+
+    .logo>img {
+        /* 顶部左logo */
+        float: left;
+        /* 向左浮动 */
+        height: 32px;
+        box-shadow: 0 0 1rem #e0e0e0;
+        /* 设置阴影，第一个参数为水平阴影，第二个参数为垂直阴影，第三个为模糊距离，第四个为颜色 */
+        border-radius: 50%;
+        /* 设置圆角 */
+        width: 50px;
+        height: 50px;
+    }
+
+    .header_ul {
+        width: 1503px;
+        /* 固定第一级ul的宽度，防止因窗口大小变化而导致导航栏变形 */
+        margin: 10px;
+        /* 使导航栏与网页顶部分离 */
+        position: relative;
+        z-index: 999;
+        height: auto;
+    }
+
+    .header_ul li {
+        width: 167px;
+        height: 50px;
+        list-style: none;
+        /* 清除小圆点 */
+        float: left;
+        /* 浮动 */
+        display: inline;
+    }
+
+    .header_ul li a {
+        display: block;
+        /* 使<a>标签成为块级元素，方便设置宽高 */
+        height: 50px;
+        width: 164px;
+        text-decoration: none;
+        /* 清除下划线 */
+        font-size: 20px;
+        color: white;
+        line-height: 50px;
+        /* 使文字上下居中 */
+        text-align: center;
+        /* 使文字左右居中 */
+        transition: all .3s;
+        /* 过渡变化效果 */
+    }
+
+    .header_ul li:hover>a {
+        background: rgba(0, 0, 0, 0.3);
+        /* 鼠标悬停在第一级li时更改颜色 */
+    }
+
+    .header_ul li ul {
+        visibility: hidden;
+        /* 隐藏二级菜单 */
+        opacity: 0;
+        transition: 300ms ease-in;
+        /* 展开二级菜单过渡变化效果 */
+    }
+
+    .header_ul li:hover ul {
+        visibility: visible;
+        /* 鼠标悬停在第一级li时展开二级菜单 */
+        opacity: 1;
+    }
+
+    .header_ul li ul li a {
+        font-size: 15px;
+        background: white;
+        color: black;
+        box-shadow: 2px 2px 3px #aaaaaa;
+
+    }
+
+    .header_ul li ul li a:hover {
+        font-weight: 600;
+        color: white;
+        background: rgb(66, 95, 175)
+    }
+
+    svg {
+        position: relative;
+        top: 5px;
+        /* 使图片与文字对齐 */
+    }
+
+    .black_overlay {
+        display: block;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        /* 绝对定位 */
+        width: 0px;
+        height: 0px;
+        background-color: black;
+        z-index: 1001;
+        opacity: 0;
+        /* 弹出校历黑色背景 */
+    }
+
+    .white_content {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: 0px;
+        margin-top: 0px;
+        /* 页面居中 */
+        width: 0px;
+        height: 0px;
+        background-image: url(school_date.png);
+        background-repeat: cover;
+        /* 图片覆盖显示 */
+        background-position: center top;
+        z-index: 1002;
+        /* 校历 */
+    }
+
+    #light.show {
+        width: 1000px;
+        height: 629px;
+        transition: .2s all;
+        margin-left: -500px;
+        margin-top: -314px;
+        /* 校历显示 */
+    }
+
+    #light.hidden {
+        width: 0px;
+        height: 0px;
+        transition: .2s all;
+        margin-left: 0px;
+        margin-top: 0px;
+        /* 校历隐藏 */
+    }
+
+    #fade.show {
+        width: 100%;
+        height: 1409px;
+        background-size: 100%;
+        opacity: 0.8;
+        transition: opacity linear .2s;
+        /* 黑色背景显示 */
+    }
+
+    #fade.hidden {
+        opacity: 0;
+        /* 透明度为0 */
+        width: 0px;
+        height: 0px;
+        background-size: 0%;
+        transition: opacity linear .2s;
+        /* 黑色背景隐藏 */
+    }
+
+    .shell {
+        width: 800px;
+        height: 452px;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -226px;
+        margin-left: 40px;
+        overflow: hidden;
+        /* 多的内容不显示拖动条 */
+        border-radius: 5px;
+        box-shadow: 20px 30px 20px rgba(0, 0, 0, .5);
+        /* 轮播图区域 */
+    }
+
+    .images {
+        width: 500%;
+        height: 100%;
+        display: flex;
+        /* 弹性布局,使得5张照片在一条直线上 */
+        position: absolute;
+        left: 0;
+        list-style: none;
+    }
+
+    .images.transition {
+        transition: .2s;
+    }
+
+    .img {
+        width: 100%;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    .img:nth-child(2) {
+        background-image: url(1.png);
+    }
+
+    .img:nth-child(4) {
+        background-image: url(3.jpg);
+    }
+
+    .img:nth-child(3) {
+        background-image: url(2.jpg);
+    }
+
+    .img:nth-child(1) {
+        background-image: url(3.jpg);
+    }
+
+    .img:nth-child(5) {
+        background-image: url(1.png);
+    }
+
+    .imgInfo {
+        position: absolute;
+        bottom: 0px;
+        /* 定位在轮播图底部 */
+        width: 800px;
+        height: 40px;
+        color: white;
+        background-color: rgba(0, 0, 0, .5);
+        z-index: 400;
+        line-height: 40px;
+        transition: 0.4s;
+        /* 轮播图的介绍 */
+    }
+
+    .imgInfo.hidden {
+        height: 0px;
+        /* 介绍隐藏 */
+    }
+
+    .button-left {
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+        /* 定位在左侧中间 */
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, .5);
+        z-index: 999;
+        cursor: pointer;
+        /* 轮播图上一张按钮 */
+    }
+
+    .button-right {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        margin-top: -20px;
+        margin-left: -40px;
+        /* 定位在右侧中间 */
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, .5);
+        z-index: 999;
+        cursor: pointer;
+    }
+
+    .firstDiv {
+        height: 620px;
+        width: 1520px;
+        position: relative;
+        /* 轮播图与作业div */
+    }
+
+    .homework {
+        height: 500px;
+        width: 600px;
+        position: absolute;
+        top: 50%;
+        margin-top: -250px;
+        left: 100%;
+        margin-left: -640px;
+        overflow: hidden;
+        border-radius: 5px;
+        box-shadow: 20px 30px 20px rgba(0, 0, 0, .5);
+        border: 2px solid #d8d8d8;
+        /* 作业区域 */
+    }
+
+    .allHomework {
+        width: 600px;
+        height: 40px;
+        font-weight: 600;
+        font-size: 30px;
+        color: #3184c3;
+        text-shadow: rgb(93, 182, 255) 2px 2px 2px;
+        line-height: 40px;
+        text-align: center;
+        /* 标题 */
+    }
+
+    .oneHomework {
+        position: relative;
+        height: 103px;
+        width: 550px;
+        box-shadow: 20px 30px 20px rgba(0, 0, 0, .2);
+        margin-bottom: 10px;
+        /* 显示一个作业Div */
+    }
+
+    .deadline {
+        height: 50px;
+        width: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #eeeef1;
+        /* 截止日期 */
+    }
+
+    .submit {
+        height: 53px;
+        width: 200px;
+        top: 50px;
+        left: 0;
+        position: absolute;
+        line-height: 50px;
+        text-align: center;
+        background-color: #eeeef1;
+        /* 提交状态 */
+    }
+
+    .suject {
+        height: 50px;
+        width: 350px;
+        top: 0;
+        left: 100%;
+        margin-left: -350px;
+        position: absolute;
+        line-height: 50px;
+        text-align: center;
+        background-color: #eeeef1;
+        font-size: 20px;
+        color: #3184c3;
+        /* 科目 */
+    }
+
+    .title {
+        height: 53px;
+        width: 350px;
+        top: 50px;
+        left: 100%;
+        margin-left: -350px;
+        position: absolute;
+        line-height: 50px;
+        text-align: center;
+        background-color: #eeeef1;
+        font-weight: 600;
+        color: #3184c3;
+        /* 作业名称 */
+    }
+
+    .deadline span {
+        position: relative;
+        top: 10px;
+        display: block;
+        color: #fff;
+        width: 150px;
+        height: 30px;
+        line-height: 30px;
+        background-image: linear-gradient(#779be9, #4c53a5);
+        border-radius: 3px;
+        text-align: center;
+        /* 显示提交状态区域 */
+    }
+
+    .unsubmitted {
+        position: relative;
+        top: 10px;
+        display: block;
+        color: #fff;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        background-image: linear-gradient(#ff6363, #e74f4f);
+        border-radius: 3px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 10px;
+        /* 未提交 */
+    }
+
+    .submitted {
+        position: relative;
+        top: 10px;
+        display: block;
+        color: #fff;
+        width: 100px;
+        height: 30px;
+        font-weight: 600;
+        line-height: 30px;
+        background-image: linear-gradient(#36e762, #4ad427);
+        border-radius: 3px;
+        font-size: 13px;
+        text-align: center;
+        /* 已提交 */
+    }
+
+    .secDiv {
+        height: 500px;
+        width: 1520px;
+        position: relative;
+        /* 新闻与公告区域 */
+    }
+
+    .news1 {
+        height: 400px;
+        width: 700px;
+        position: absolute;
+        top: 50%;
+        margin-top: -250px;
+        left: 0;
+        margin-left: 40px;
+        overflow: hidden;
+        border-radius: 5px;
+        box-shadow: 20px 30px 20px rgba(0, 0, 0, .5);
+        border: 2px solid #d8d8d8;
+        /* 左侧新闻 */
+    }
+
+    .news2 {
+        height: 400px;
+        width: 700px;
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        margin-top: -250px;
+        margin-left: -740px;
+        overflow: hidden;
+        border-radius: 5px;
+        box-shadow: 20px 30px 20px rgba(0, 0, 0, .5);
+        border: 2px solid #d8d8d8;
+        /* 右侧新闻 */
+    }
+
+    .newsType {
+        width: 680px;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        font-weight: 600;
+        padding-left: 20px;
+        font-size: 20px;
+        color: #3184c3;
+        border-bottom: 3px solid #3184c3;
+        text-shadow: rgb(93, 182, 255) 2px 2px 2px;
+        /* 公告/新闻类型 */
+    }
+
+    .oneNews {
+        height: 36px;
+        width: 700px;
+        background-color: #f5f5f5;
+        position: relative;
+        transition: .2s all;
+        /* 显示一条新闻 */
+    }
+
+    .oneNews_2 {
+        height: 36px;
+        width: 700px;
+        position: relative;
+        transition: .2s all;
+    }
+
+    .oneNews:hover,
+    .oneNews_2:hover {
+        border-left: 5px solid #3184c3;
+        /* 鼠标经过时动画效果 */
+    }
+
+    .headlines {
+        position: absolute;
+        left: 0;
+        height: 36px;
+        width: 510px;
+        margin-left: 10px;
+        margin-right: 30px;
+        line-height: 36px;
+        color: rgb(88, 88, 88);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 600;
+        /* 新闻/公告标题 */
+    }
+
+    .time {
+        position: absolute;
+        left: 100%;
+        margin-left: -150px;
+        height: 36px;
+        width: 150px;
+        margin-right: 0px;
+        line-height: 36px;
+        color: rgb(88, 88, 88);
+        font-size: 500;
+        /* 新闻/公告时间 */
+    }
+
+    .lastDiv {
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(90deg, #155799, #0a1054);
+        position: relative;
+        /* 底部学院信息区域 */
+    }
+
+    .lastlogo {
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+        left: 100px;
+        height: 40px;
+        /* 底部学校logo */
+    }
+
+    .adr,
+    .postCode {
+        position: absolute;
+        left: 100%;
+        height: 40px;
+        width: 400px;
+        margin-left: -400px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 40px;
+        /* 地址与邮编 */
+    }
+
+    .adr {
+        top: 30px;
+    }
+
+    .postCode {
+        top: 80px;
+    }
+
+    .link {
+        width: 400px;
+        height: 120px;
+        position: absolute;
+        top: 50%;
+        margin-top: -60px;
+        left: 50%;
+        margin-left: -200px;
+        /* 相关链接 */
+    }
+
+    .head {
+        height: 20px;
+        line-height: 20px;
+        color: #fff;
+        margin-bottom: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .head img {
+        position: relative;
+        top: 5px;
+    }
+
+    .oneLink {
+        height: 23.75px;
+    }
+
+    .oneLink a {
+        color: #4da0ff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+</style>
+<script>
+    function schoolDateShow() {
+        // 显示校历
+        var school_date = document.getElementById('light');
+        school_date.classList.remove('hidden');
+        school_date.classList.add('show');
+        var fade = document.getElementById('fade');
+        fade.classList.remove('hidden');
+        fade.classList.add('show');
+    }
+    function schoolDateHidden() {
+        // 隐藏校历
+        var school_date = document.getElementById('light');
+        school_date.classList.remove('show');
+        school_date.classList.add('hidden');
+        var fade = document.getElementById('fade');
+        fade.classList.remove('show');
+        fade.classList.add('hidden');
+    }
+    function searchSchoolDate() {
+        //搜素校历
+        if (document.getElementById("searchInput").value === '校历') {
+            schoolDateShow();
+        }
+    }
+    function search() {
+        //搜索框显示
+        var searchInput = document.getElementById('searchInput');
+        var searchIco = document.getElementById('searchIco');
+        searchInput.classList.remove('hidden');
+        searchInput.classList.add('show');
+        searchIco.classList.add('show');
+        searchInput.focus();
+    }
+    function searchHidden() {
+        //搜索框隐藏
+        var searchInput = document.getElementById('searchInput');
+        var searchIco = document.getElementById('searchIco');
+        searchInput.classList.remove('show');
+        searchInput.classList.add('hidden');
+        searchIco.classList.remove('show');
+    }
+</script>
+
+<body>
+    <div class="all">
+        <div class="logo">
+            <img class="logo_1" src="logo.png" alt="">
+            <img class="logo_2" src="dgutlogo.png" alt="">
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp东莞理工学院·网络空间安全学院
+            <div class="search">
+                <div class="date">
+                    第<span class="dateSpan" id="schoolWeek">--</span>周
+                    <span class="dateSpan" id="year">----</span>年
+                    <span class="dateSpan" id="month">--</span>月
+                    <span class="dateSpan" id="day">--</span>日
+                    <span class="dateSpan" id="hour">--</span>时
+                    <span class="dateSpan" id="minute">--</span>分
+                    <span class="dateSpan" id="second">--</span>秒
+                    星期<span class="dateSpan" id="week">--</span>
+                </div>
+                <div class="searchArea">
+                    <img id="searchIco" src="search.png" width="30px" ,height="30px" onclick="search()">
+                    <input id="searchInput" type="text" onBlur="searchHidden()"
+                        onkeydown="javascript:if(event.keyCode==13) searchSchoolDate()">
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <ul class="header_ul">
+                <li><a href="#"><svg t="1634609579730" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="43061" width="23" height="25">
+                            <path
+                                d="M979.792374 404.577188 574.183101 83.942886c-34.918864-27.694272-89.619352-27.694272-124.538216 0L44.207626 404.577188c-13.933143 11.008903-16.169326 31.134554-5.332437 44.895683s30.618512 16.169326 44.551655 5.332437l12.55703-10.320847 0 387.547791c0 54.872501 57.968755 95.983874 108.712918 95.983874l639.892491 0c50.22812 0 83.254829-38.531161 83.254829-95.983874L927.844112 445.860575l11.69696 8.944734c5.84848 4.644381 13.073072 6.880564 20.125651 6.880564 9.460776 0 18.921552-4.128339 25.286074-12.213002C995.9617 435.711742 993.725517 415.586091 979.792374 404.577188zM479.919368 864.026877 479.919368 686.508315c0-8.77272 15.997312-13.245087 31.994625-13.245087s31.994625 4.472367 31.994625 13.245087l0 177.346548L479.919368 864.026877 479.919368 864.026877zM864.026877 832.032253c0 21.157736-5.84848 31.994625-19.26558 31.994625L608.585923 864.026877c0-0.516042-0.688056-0.860071-0.688056-1.376113L607.897867 686.508315c0-37.155048-29.930455-77.234336-95.983874-77.234336s-95.983874 40.079288-95.983874 77.234336l0 176.142449c0 0.516042 0.860071 0.860071 0.860071 1.376113L204.868806 864.026877c-20.125651 0-44.723669-17.373425-44.723669-31.994625L160.145137 393.740299 488.864102 134.171006c11.868974-9.288762 33.198723-9.288762 44.895683 0l330.095078 261.11742L863.854863 832.032253z"
+                                p-id="43062" fill="#ffffff"></path>
+                        </svg>首页</a></li>
+                <li><a href="#"><svg t="1634608133103" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="12596" width="22" height="25">
+                            <path
+                                d="M264.533333 294.4c-15.644444 0-28.444444 12.8-28.444444 28.444444v136.248889c0 15.644444 12.8 28.444444 28.444444 28.444445s28.444444-12.8 28.444445-28.444445v-136.248889c0-15.644444-12.515556-28.444444-28.444445-28.444444zM264.533333 536.462222c-15.644444 0-28.444444 12.8-28.444444 28.444445v136.248889c0 15.644444 12.8 28.444444 28.444444 28.444444s28.444444-12.8 28.444445-28.444444v-136.248889c0-15.644444-12.515556-28.444444-28.444445-28.444445z"
+                                fill="#ffffff" p-id="12597"></path>
+                            <path
+                                d="M995.555556 947.2h-72.817778V421.262222c0-46.933333-38.4-85.333333-85.333334-85.333333-2.275556 0-4.835556 0.284444-7.111111 0.853333l-189.155555 47.786667V162.133333c0-46.364444-36.977778-83.911111-83.057778-85.333333L190.862222 20.48C189.44 20.195556 188.017778 19.911111 186.595556 19.911111c-46.933333 0-85.333333 38.4-85.333334 85.333333v841.955556H28.444444c-15.644444 0-28.444444 12.8-28.444444 28.444444s12.8 28.444444 28.444444 28.444445h967.111112c15.644444 0 28.444444-12.8 28.444444-28.444445s-12.8-28.444444-28.444444-28.444444zM584.533333 421.262222V947.2H158.151111V105.244444c0-15.075556 11.662222-27.306667 26.737778-28.444444l366.933333 56.604444c1.422222 0.284444 2.844444 0.284444 4.266667 0.284445 15.644444 0 28.444444 12.8 28.444444 28.444444v259.128889z m281.315556 525.937778h-224.426667V443.448889l199.111111-50.346667c14.222222 1.422222 25.6 13.653333 25.6 28.444445V947.2z"
+                                fill="#ffffff" p-id="12598"></path>
+                        </svg>学院概况</a>
+                    <ul>
+                        <li><a href="#">学院介绍</a></li>
+                        <li><a href="#">院徽释义</a></li>
+                        <li><a href="#">学院机构</a></li>
+                        <li><a href="#">系部设置</a></li>
+                        <li><a href="#">专业介绍</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><svg t="1634608062088" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="11469" width="25" height="25">
+                            <path
+                                d="M1009.2 734.9C997.5 681.8 968 633.5 926 598.7a242.94 242.94 0 0 0-43-28.5c55.3-36.6 91.9-99.3 91.9-170.4 0-108.4-84.9-197.3-191.7-203.8v0.3c-16.2 0.7-29.1 14.1-29.1 30.5s12.9 29.8 29.2 30.5v0.1c73 6.4 130.4 67.8 130.4 142.4 0 78.8-64.1 143-143 143-4.1 0-8.1-0.2-12.2-0.6-1.7-0.3-3.4-0.4-5.1-0.4-17.4 0-31.5 14.1-31.5 31.5s14.1 31.5 31.5 31.5c0.6 0 1.2 0 1.8-0.1 5.1-0.4 10.3-0.7 15.4-0.7 83.7 0 157.1 57.9 177.5 138.7-7.5 3.6-22.7 9.3-51.6 14.6-10 1.8-20.8 3.4-32.2 4.8-16.5 0.4-29.8 13.9-29.8 30.5 0 16.9 13.7 30.5 30.5 30.5h0.8c0.8 0 1.7-0.1 2.5-0.2 19.4-1.4 42.3-5.7 58-9.3 22-5 39.8-11.1 52.9-18.2 27-14.5 32.6-32.8 32.6-45.6 0.2-5-0.7-10-2.6-14.9z m-994.4 0C26.5 681.8 56 633.5 98 598.7c13.4-11.1 27.8-20.6 43-28.5-55.3-36.6-91.9-99.3-91.9-170.4 0-108.4 84.9-197.3 191.7-203.8v0.3c16.2 0.7 29.1 14.1 29.1 30.5s-12.9 29.8-29.2 30.5v0.1c-73 6.4-130.4 67.8-130.4 142.4 0 78.8 64.1 143 143 143 4.1 0 8.1-0.2 12.2-0.6 1.7-0.3 3.4-0.4 5.1-0.4 17.4 0 31.5 14.1 31.5 31.5s-14.1 31.5-31.5 31.5c-0.6 0-1.2 0-1.8-0.1-5.1-0.4-10.3-0.7-15.4-0.7-83.7 0-157.1 57.9-177.5 138.7 7.5 3.6 22.7 9.3 51.6 14.6 10 1.8 20.8 3.4 32.2 4.8 16.5 0.4 29.8 13.9 29.8 30.5 0 16.9-13.7 30.5-30.5 30.5h-0.8c-0.8 0-1.7-0.1-2.5-0.2-19.4-1.4-42.3-5.7-58-9.3-22-5-39.8-11.1-52.9-18.2-27-14.5-32.6-32.8-32.6-45.6-0.2-5 0.7-10 2.6-14.9z m684.4-112.6c-18.8-15.6-39.3-28.6-61.2-38.9 17.1-10.2 33-22.5 47.4-37 45.6-45.6 70.7-106.2 70.7-170.7s-25.1-125-70.7-170.6c-45.6-45.6-106.2-70.7-170.7-70.7S389.6 159.5 344 205.1c-45.6 45.6-70.7 106.2-70.7 170.7s25.1 125.1 70.7 170.7c14.4 14.4 30.4 26.8 47.4 37-21.9 10.3-42.4 23.3-61.2 38.9-50 41.4-85 98.9-98.9 162.2-2.1 5.3-3.1 10.7-3.1 16.1 0 13.7 6.3 33.5 36.2 49.6 15.3 8.3 36.4 15.5 62.6 21.4 50.5 11.5 117.2 17.9 187.7 17.9 70.6 0 137.2-6.3 187.7-17.9 26.2-6 47.2-13.2 62.6-21.4 29.9-16.1 36.2-35.9 36.2-49.6 0-5.4-1.1-10.8-3.1-16.1-13.9-63.3-48.9-120.9-98.9-162.3zM334.6 375.8c0-99.3 80.8-180.2 180.2-180.2S695 276.4 695 375.8c0 99.3-80.8 180.2-180.2 180.2-99.4-0.1-180.2-80.9-180.2-180.2z m337.1 439.9c-43.8 8.2-99.6 12.8-156.9 12.8-57.4 0-113.1-4.5-156.9-12.8-37.7-7.1-57.6-15.2-66.2-20.2 23.7-103.6 116.8-178.3 223.1-178.3s199.4 74.7 223.1 178.3c-8.7 4.9-28.5 13.1-66.2 20.2z"
+                                p-id="11470" fill="#ffffff"></path>
+                        </svg>师资队伍</a>
+                    <ul>
+                        <li><a href="#">网络工程系</a></li>
+                        <li><a href="#">软件工程系</a></li>
+                        <li><a href="#">网络空间安全系</a></li>
+                        <li><a href="#">办公室</a></li>
+                        <li><a href="#">实验室</a></li>
+                        <li><a href="#">人才招聘</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><svg t="1634608380073" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="15158" width="25" height="25">
+                            <path
+                                d="M825.6 951.04h-614.4c-73.4208 0-133.12-59.6992-133.12-133.12v-614.4c0-73.4208 59.6992-133.12 133.12-133.12h614.4c73.4208 0 133.12 59.6992 133.12 133.12v614.4c0 73.4208-59.7504 133.12-133.12 133.12z m-614.4-819.2c-39.5264 0-71.68 32.1536-71.68 71.68v614.4c0 39.5264 32.1536 71.68 71.68 71.68h614.4c39.5264 0 71.68-32.1536 71.68-71.68v-614.4c0-39.5264-32.1536-71.68-71.68-71.68h-614.4z"
+                                fill="#ffffff" p-id="15159"></path>
+                            <path
+                                d="M653.4144 533.0432c-1.024 0-2.048 0-3.072 0.0512 69.3248 26.7264 111.4112 112.128 75.3664 181.3504l-87.9616-90.8288 33.5872-34.6112-20.992-21.504c-7.7824 7.8848-18.688 11.5712-28.7744 11.5712-4.864 0-9.5744-0.8704-13.6192-2.56l-66.8672 68.7616 37.888 38.7584 25.2416-25.856 87.9616 90.6752c-15.7184 8.8576-33.5872 13.4656-52.1728 13.4656-32.3072 0-66.56-13.9776-94.5664-43.8272l-21.2992 21.8624c6.4 9.1136 11.7248 17.3568 18.3808 24.2688-0.5632 0.7168-2.4064 2.2528-2.4576 2.304-1.1264-0.2048-2.4576-0.6144-3.6352-0.6144-11.3664 0-20.48 10.1376-20.48 21.8112 0 11.6224 9.2672 21.1456 20.5824 21.1456 11.3664 0 21.0432-9.5744 21.0432-21.248 0-1.3824-0.3072-2.6112-0.512-3.8912l3.2768-3.328c26.5728 18.432 54.4256 28.3648 83.6096 28.3648 26.4192 0 53.8112-8.1408 82.176-25.6l24.6272 25.4464 33.7408-34.2016-24.832-25.7536c70.2976-108.9536-21.504-216.0128-106.24-216.0128zM518.4 541.44c-96 0-174.08-78.08-174.08-174.08s78.08-174.08 174.08-174.08 174.08 78.08 174.08 174.08-78.08 174.08-174.08 174.08z m0-286.72c-62.1056 0-112.64 50.5344-112.64 112.64s50.5344 112.64 112.64 112.64 112.64-50.5344 112.64-112.64-50.5344-112.64-112.64-112.64z"
+                                fill="#ffffff" p-id="15160"></path>
+                            <path
+                                d="M298.24 833.28c-16.9472 0-30.72-13.7728-30.72-30.72v-189.44c0-73.4208 59.6992-133.12 133.12-133.12h15.36c6.3488 0 14.3872-0.1536 23.6032-0.3072 21.1456-0.3584 50.176-0.8192 79.616-0.0512 16.9472 0.4608 30.3104 14.592 29.8496 31.5392s-14.592 30.0544-31.5392 29.8496c-28.1088-0.768-55.1936-0.3072-76.9024 0.0512-9.6768 0.1536-18.0224 0.3072-24.6784 0.3072h-15.36c-39.5264 0-71.68 32.1536-71.68 71.68v189.44a30.64832 30.64832 0 0 1-30.6688 30.7712z"
+                                fill="#ffffff" p-id="15161"></path>
+                        </svg>党建工会</a>
+                    <ul>
+                        <li><a href="#">党建思政</a></li>
+                        <li><a href="#">工会工作</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><svg t="1634609067958" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="33172" width="25" height="25">
+                            <path
+                                d="M759.684 287.08H434.385c-15.847 0-28.703 12.856-28.703 28.703s12.855 28.703 28.703 28.703h325.298c15.844 0 28.703-12.856 28.703-28.703 0.001-15.846-12.859-28.703-28.702-28.703z m0 172.217H644.871c-15.846 0-28.703 12.855-28.703 28.701 0 15.848 12.857 28.704 28.703 28.704h114.813c15.844 0 28.703-12.855 28.703-28.704 0-15.845-12.86-28.701-28.703-28.701z m9.564-363.568H290.871c-84.539 0-153.082 68.543-153.082 153.082v153.082h1.925c-1.083 3.027-1.925 6.167-1.925 9.567 0 15.847 12.857 28.703 28.703 28.703s28.703-12.856 28.703-28.703c0-3.4-0.86-6.54-1.925-9.567h1.925V267.945c0-63.422 51.407-114.811 114.812-114.811h440.107c63.405 0 114.812 51.389 114.812 114.811V727.19c0 63.403-51.406 114.81-114.812 114.81h-153.08v1.925c-3.028-1.083-6.168-1.925-9.569-1.925-15.846 0-28.701 12.858-28.701 28.704s12.855 28.703 28.701 28.703c3.401 0 6.541-0.86 9.569-1.944v1.944h172.214c84.542 0 153.083-68.545 153.083-153.081V248.81c0-84.539-68.541-153.081-153.083-153.081z m-223.51 658.144l61.235-181.278c5.083-15.024-2.988-31.301-17.994-36.383-15.024-5.084-31.3 2.988-36.382 18.013l-48.4 143.234c-25.731-32.309-63.871-57.762-109.242-72.076 18.369-21.675 29.861-49.351 29.861-79.978 0-68.691-55.686-124.377-124.379-124.377-68.692 0-124.378 55.686-124.378 124.377 0 33.074 13.119 62.938 34.178 85.213-76.764 29.412-129.854 91.487-129.854 163.543 0 31.152 9.942 60.47 27.376 86.109h31.954c-1.083 3.027-1.925 6.167-1.925 9.569 0 15.846 12.857 28.701 28.703 28.701h287.027c15.848 0 28.703-12.855 28.703-28.701 0-3.402-0.86-6.542-1.925-9.569h31.935c17.454-25.64 27.396-54.957 27.396-86.109 0-9.491-1.196-18.761-2.973-27.842 3.927-3.29 7.328-7.251 9.084-12.446z m-245.3-275.439c36.981 0 66.973 29.972 66.973 66.972 0 36.979-29.992 66.974-66.973 66.974-36.981 0-66.973-29.994-66.973-66.974 0-37.001 29.992-66.972 66.973-66.972zM454.752 861.38c-0.448-0.021-0.802-0.243-1.233-0.243H166.492c-0.43 0-0.804 0.223-1.233 0.243-17.322-19.38-27.47-42.438-27.47-67.219 0-68.689 77.102-124.376 172.218-124.376 95.114 0 172.215 55.687 172.215 124.376 0 24.781-10.147 47.839-27.47 67.219z"
+                                p-id="33173" fill="#ffffff"></path>
+                        </svg>教学工作</a>
+                    <ul>
+                        <li><a href="#">教学动态</a></li>
+                        <li><a href="#">工程认证</a></li>
+                        <li><a href="#">教学大纲</a></li>
+                        <li><a href="#">人才培养方案</a></li>
+                        <li><a href="#">学科竞赛</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><svg t="1634609187843" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="36361" width="23" height="25">
+                            <path
+                                d="M129.52988 539.537849c-19.378486 0-35.697211-16.318725-35.697211-35.697212V247.840637c0-19.378486 16.318725-35.697211 35.697211-35.697211s35.697211 16.318725 35.697212 35.697211v256c0 20.398406-16.318725 35.697211-35.697212 35.697212z"
+                                fill="#ffffff" p-id="36362"></path>
+                            <path
+                                d="M229.482072 191.74502c-14.278884 0-28.557769-9.179283-33.657371-23.458167-7.139442-18.358566 3.059761-38.756972 21.418327-45.896415L527.298805 8.159363c8.159363-3.059761 16.318725-3.059761 24.478087 0l295.776893 106.071713c18.358566 7.139442 28.557769 27.537849 21.418327 45.896414-7.139442 18.358566-27.537849 28.557769-45.896415 21.418327l-283.537848-101.992032-297.816733 110.151394c-4.079681 1.01992-8.159363 2.039841-12.239044 2.039841z"
+                                fill="#ffffff" p-id="36363"></path>
+                            <path
+                                d="M539.537849 1024c-6.119522 0-12.239044-2.039841-18.358566-5.099602L111.171315 782.278884c-17.338645-10.199203-22.438247-31.61753-13.258964-48.956175 10.199203-17.338645 31.61753-22.438247 48.956175-13.258964l391.649402 226.422311 374.310757-216.223108V247.840637c0-19.378486 16.318725-35.697211 35.697211-35.697211s35.697211 16.318725 35.697212 35.697211v503.840638c0 13.258964-7.139442 24.478088-18.358566 30.597609L556.876494 1018.900398c-5.099602 3.059761-11.219124 5.099602-17.338645 5.099602z"
+                                fill="#ffffff" p-id="36364"></path>
+                            <path
+                                d="M539.537849 520.159363c-6.119522 0-12.239044-2.039841-17.338646-5.099602L112.191235 278.438247c-17.338645-10.199203-22.438247-31.61753-13.258964-48.956175 10.199203-17.338645 31.61753-22.438247 48.956175-13.258964l408.988048 236.621514c17.338645 10.199203 22.438247 31.61753 13.258964 48.956175-7.139442 11.219124-18.358566 18.358566-30.597609 18.358566z"
+                                fill="#ffffff" p-id="36365"></path>
+                            <path
+                                d="M539.537849 520.159363c-12.239044 0-24.478088-6.119522-30.59761-18.358566-10.199203-17.338645-4.079681-38.756972 13.258964-48.956175l408.988048-236.621514c17.338645-10.199203 38.756972-4.079681 48.956175 13.258964 10.199203 17.338645 4.079681 38.756972-13.258964 48.956175L556.876494 515.059761c-5.099602 3.059761-11.219124 5.099602-17.338645 5.099602z"
+                                fill="#ffffff" p-id="36366"></path>
+                            <path
+                                d="M539.537849 1022.98008c-19.378486 0-35.697211-16.318725-35.697212-35.697211v-509.96016c0-20.398406 16.318725-35.697211 35.697212-35.697211s35.697211 16.318725 35.697211 35.697211v509.96016c0 19.378486-16.318725 35.697211-35.697211 35.697211z"
+                                fill="#ffffff" p-id="36367"></path>
+                        </svg>科学研究</a>
+                    <ul>
+                        <li><a href="#">科研动态</a></li>
+                        <li><a href="#">科研团队成果</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><svg t="1634609370272" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="38093" width="25" height="25">
+                            <path d="M928 563.2a32 32 0 0 1-32-32V371.2a32 32 0 0 1 64 0v160a32 32 0 0 1-32 32z"
+                                p-id="38094" fill="#ffffff">
+                            </path>
+                            <path
+                                d="M515.584 524.8c-20.8 0-38.848-2.816-56.896-8.96L49.28 359.872C6.336 342.336 0 315.328 0 300.8c0-14.592 6.336-41.6 48.576-58.816l405.376-155.776c31.232-12.096 84.736-12.16 116.16 0l404.672 155.52c42.88 17.408 49.216 44.48 49.216 59.072 0 14.592-6.336 41.536-48.64 58.816L570.048 515.392c-13.312 6.08-31.68 9.408-54.464 9.408zM73.92 300.8l406.464 154.752c10.432 3.584 21.248 5.248 35.2 5.248 16.512 0 25.344-2.432 29.76-4.416L950.016 300.8 547.072 145.984c-16.768-6.528-53.504-6.464-70.08 0L73.92 300.8z"
+                                p-id="38095" fill="#ffffff"></path>
+                            <path
+                                d="M515.584 644.16c-20.736 0-38.784-2.88-56.896-9.024L180.16 529.152l22.72-59.84 277.44 105.664c10.496 3.52 21.312 5.248 35.2 5.248 16.448 0 25.28-2.432 29.76-4.48l275.136-105.792 22.976 59.776-273.344 105.024c-13.376 6.144-31.744 9.408-54.464 9.408z"
+                                p-id="38096" fill="#ffffff"></path>
+                            <path
+                                d="M515.456 947.2c-164.8 0-346.304-50.368-355.328-161.024L160 499.2a32 32 0 0 1 64 0v281.024c4.416 56.128 137.92 102.976 291.456 102.976 120.768 0 232.32-28.352 271.296-68.928 9.344-9.664 13.632-19.328 13.184-29.376V501.504a32 32 0 0 1 64 0v278.72c1.152 29.632-9.6 56-30.976 78.336-62.784 65.344-205.12 88.64-317.504 88.64z"
+                                p-id="38097" fill="#ffffff"></path>
+                            <path d="M928 627.2m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z" p-id="38098" fill="#ffffff">
+                            </path>
+                        </svg>学生工作</a>
+                    <ul>
+                        <li><a href="#">学生活动</a></li>
+                        <li><a href="#">学生事务</a></li>
+                        <li><a href="#">心理健康</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="#"><svg t="1634609435398" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="40058" width="22" height="25">
+                            <path
+                                d="M543.2 681.6H270v-10.8c0-10.8 2.4-21.6 5.6-30.8 4-9.6 10-18.4 17.6-26.4 14-14 33.6-23.2 55.6-23.2h116c10.8 0 20.8 2.4 30 6 9.2 4 18.8 10 25.6 17.2 7.6 8 13.6 16.8 17.6 26.4 3.6 9.2 5.6 20 5.6 30.8v10.8zM336 368.4c17.6-18.4 43.2-29.6 70.8-29.6 27.6 0 52.8 11.2 70.8 29.6 18 18.4 29.2 44 29.2 72.4 0 27.6-11.2 53.6-29.2 72-38.8 39.6-102.8 39.6-141.6 0-18.4-18.4-29.2-44-29.2-72s10.8-53.6 29.2-72.4z m217.2 211.6c-11.6-11.6-25.6-21.6-40.4-27.6l-6-2.4 4-3.2c26.4-27.2 42.8-64.8 42.8-106 0-41.6-16.8-79.2-42.8-106-27.2-27.2-63.6-44-104.4-44-40.4 0-77.2 16.8-104 44-26.8 26.8-43.6 64.4-43.6 106 0 41.2 16.8 78.8 43.6 106l3.2 3.2c-17.6 6.4-33.6 16.8-46.4 30-12 11.6-21.2 26-27.2 42-6.4 14.8-9.6 31.6-9.6 48.8v34.8c0 13.2 10 23.6 23.2 23.6h320.8c13.2 0 23.2-10 23.2-23.6v-34.8c0-17.2-3.2-34-9.6-48.8-5.6-16-15.2-30.4-26.8-42zM178.8 0h459.2c10.4 0 20.4 4.8 27.2 12l279.6 284.4c7.2 7.6 11.6 17.6 11.6 27.6v594c0 29.2-12 55.6-30.8 74.4l-0.4 0.4-1.2 0.8c-18.8 18.4-44 30.4-72 30.4H178.8c-28 0-53.6-12.4-72.4-31.2h-0.4c-18.4-19.2-30-45.6-30-74.8V105.6c0-29.6 11.6-56 30-75.2C124.4 12 150.8 0 178.8 0z m700 347.6h-176c-24.4 0-46.8-10-62-26.4l-1.6-1.2c-15.6-16.4-24.4-38.4-24.4-62.8V78.8h-436c-7.2 0-13.2 2.8-18.4 7.6-5.2 5.2-7.2 12-7.2 19.2v812.4c0 7.2 2.4 14 7.2 19.2 5.2 4.4 11.2 7.6 18.4 7.6h673.6c7.2 0 13.6-3.2 18.8-7.6 4.8-5.6 7.2-12 7.2-19.2V347.6z m-39.6-46.8l-178.4-182v139.2c0 11.6 4.4 22 10.8 29.6l1.2 0.8c7.6 7.6 18 12.8 29.6 12.8h136.8z"
+                                p-id="40059" fill="#ffffff"></path>
+                        </svg>招生就业</a>
+                    <ul>
+                        <li><a href="#">本科生招生</a></li>
+                        <li><a href="#">就业信息</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><svg t="1634609543014" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="41397" width="28" height="23.5">
+                            <path
+                                d="M341.333333 640a42.666667 42.666667 0 0 1-42.666666 42.666667H256a170.666667 170.666667 0 0 1-40.277333-336.554667 298.709333 298.709333 0 0 1 570.154666-81.408A213.333333 213.333333 0 0 1 725.333333 682.666667a42.666667 42.666667 0 0 1 0.042667-85.333334 128 128 0 0 0 36.394667-250.794666l-38.144-11.264-15.914667-36.437334a213.376 213.376 0 0 0-407.296 58.026667l-7.381333 58.368-57.173334 13.824A85.418667 85.418667 0 0 0 256 597.333333h42.666667a42.666667 42.666667 0 0 1 42.666666 42.666667z m321.706667 87.338667a42.666667 42.666667 0 0 1 0 60.330666l-120.917333 120.832c-16.682667 16.64-43.690667 16.64-60.373334 0l-120.917333-120.832a42.666667 42.666667 0 0 1 60.330667-60.330666L469.333333 775.509333V426.666667a42.666667 42.666667 0 0 1 85.333334 0v348.714666l48.042666-48.042666a42.666667 42.666667 0 0 1 60.330667 0z"
+                                fill="#ffffff" p-id="41398"></path>
+                        </svg>下载专区</a>
+                    <ul>
+                        <li><a href="#">教师下载专区</a></li>
+                        <li><a href="#">学生下载专区</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="firstDiv">
+        <div class="shell">
+            <ul class="images" id="images">
+                <li class="img"></li>
+                <li class="img"></li>
+                <li class="img"></li>
+                <li class="img"></li>
+                <li class="img"></li>
+            </ul>
+            <div class="imgInfo">网络空间安全学院青年博士长期招聘公告</div>
+            <div class="button-left"><img src="pre.png" width="40px" height="40px"></div>
+            <div class="button-right"><img src="next.png" width="40px" height="40px"></div>
+        </div>
+        <div class="homework">
+            <div class="allHomework">作业详情</div>
+            <div class="oneHomework">
+                <div class="deadline"><span>2021-12-20 22:00</span></div>
+                <div class="submit"><span class="unsubmitted" id="unsubmitted1"><span id="uns1h"></span><span
+                            id="uns1m"></span><span id="uns1s"></span></span></div>
+                <div class="suject">面向对象程序设计(Java)</div>
+                <div class="title">实验六：Java类库应用编程（三）</div>
+            </div>
+            <div class="oneHomework">
+                <div class="deadline"><span>2021-12-21 00:00</span></div>
+                <div class="submit"><span class="unsubmitted" id="unsubmitted2"><span id="uns2h"></span><span
+                            id="uns2m"></span><span id="uns2s"></span></span></div>
+                <div class="suject">web开发入门</div>
+                <div class="title">大作业</div>
+            </div>
+            <div class="oneHomework">
+                <div class="deadline"><span>2021-12-09 23:00</span></div>
+                <div class="submit"><span class="submitted">成绩：98</span></div>
+                <div class="suject">数据结构实践</div>
+                <div class="title">课程综合报告</div>
+            </div>
+            <div class="oneHomework">
+                <div class="deadline"><span>2021-11-05 23:00</span></div>
+                <div class="submit"><span class="submitted">已提交</span></div>
+                <div class="suject">数据结构实践</div>
+                <div class="title">项目需求分析与设计报告</div>
+            </div>
+        </div>
+    </div>
+    <div class="secDiv">
+        <div class="news1">
+            <div class="newsType">教学动态</div>
+            <div class="oneNews">
+                <div class="headlines">网络空间安全学院召开学院工作安排会议</div>
+                <div class="time">2012-12-17</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">广东工业大学副校长阳爱民教授来访网络空间安全学院</div>
+                <div class="time">2012-12-10</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">我院与360公司洽谈合作</div>
+                <div class="time">2012-12-08</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">2021年网络安全学院分工会工作总结暨教职工代表大会</div>
+                <div class="time">2012-12-03</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">网安学院2022届本科生毕业设计（论文）安排、相关表格及说明</div>
+                <div class="time">2012-12-02</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">网安学院与安恒信息技术股份有限公司洽谈合作</div>
+                <div class="time">2012-11-22</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">网安学院召开期中教学工作师生座谈会</div>
+                <div class="time">2012-11-19</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">2021年东莞理工学院国际学术周圆满落下帷幕</div>
+                <div class="time">2012-11-02</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">网安学院开展实验室安全大检查工作</div>
+                <div class="time">2012-11-02</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">网安学院专业综合实训答辩圆满结束</div>
+                <div class="time">2012-10-15</div>
+            </div>
+        </div>
+        <div class="news2">
+            <div class="newsType">学院通知</div>
+            <div class="oneNews">
+                <div class="headlines">中标（成交）结果公告-软件测试课程服务项目</div>
+                <div class="time">2021-12-15</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">询价通知书-软件测试课程服务采购项目</div>
+                <div class="time">2021-12-07</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">网安学院关于动员组织学生参加第十三届“挑战杯”广东大学生创业计划竞赛东莞理工学院选拔赛的通知</div>
+                <div class="time">2021-11-24</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">关于2022年度“攀登计划”专项资金项目申报通知</div>
+                <div class="time">2021-11-23</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">第十三届蓝桥杯选拔赛暨网安学院程序设计能力提升计划之周赛通知</div>
+                <div class="time">2021-11-12</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">网络空间安全学院2020-2021学年先进班集体名单公示</div>
+                <div class="time">2021-11-08</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">网络空间安全安全学院2020-2021学年单项奖学金名单公示</div>
+                <div class="time">2021-11-04</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">网络空间安全安全学院2020-2021学年 优秀大学生、优秀学生干部名单公示</div>
+                <div class="time">2021-11-02</div>
+            </div>
+            <div class="oneNews">
+                <div class="headlines">第十三届蓝桥杯全国软件和信息技术专业人才大赛网安学院赛点选拔赛即日起接受报名</div>
+                <div class="time">2021-11-02</div>
+            </div>
+            <div class="oneNews_2">
+                <div class="headlines">网络空间安全安全学院2020-2021学年 学年综合奖学金名单公示</div>
+                <div class="time">2021-10-15</div>
+            </div>
+        </div>
+    </div>
+    <div class="lastDiv">
+        <div class="lastlogo">
+            <img src="dgutlogo2.png" width="201px" height="40px">
+        </div>
+        <div class="link">
+            <div class="head">相关链接<img src="link.png" width="20px" height="20px"></div>
+            <div class="oneLink"><a href="https://www.dgut.edu.cn/">学校官网</a></div>
+            <div class="oneLink"><a href="https://oj.css.dgut.edu.cn/">在线编程系统OJ</a></div>
+            <div class="oneLink"><a href="https://hw.css.dgut.edu.cn/login">作业管理系统</a></div>
+            <div class="oneLink"><a href="https://lab.css.dgut.edu.cn/ui/home">实验室管理系统</a></div>
+        </div>
+        <div class="adr">地址：东莞市松山湖大学路1号东莞理工学院9号楼</div>
+        <div class="postCode">邮编：523808</div>
+    </div>
+    <div id="light" class="white_content"></div>
+    <div id="fade" class="black_overlay" onclick="schoolDateHidden()"></div>
+
+</body>
+<script>
+    let left = document.querySelector('.button-left');
+    let right = document.querySelector('.button-right');
+    let images = document.querySelector('.images');
+    let imgInfo = document.querySelector('.imgInfo');
+    let index = 0;
+    let time;
+    function position() {
+        images.classList.add('transition');
+        imgInfo.classList.add('hidden');
+        setTimeout(() => {
+            if (index == 1 || index == 4) {
+                imgInfo.innerHTML = '成洪波书记在线指导我院新学期在线教学第一课'
+            }
+            else if (index == 2) {
+                imgInfo.innerHTML = '马宏伟校长出席并指导网络空间安全学院党政联席会议'
+            }
+            else {
+                imgInfo.innerHTML = '网络空间安全学院青年博士长期招聘公告'
+            }
+            imgInfo.classList.remove('hidden');
+        }, 300)
+        images.style.left = (index * -100) + "%";
+        if (index == 4) {
+            setTimeout(() => {
+                images.classList.remove('transition');
+                index = 1;
+                images.style.left = (index * -100) + "%";
+            }, 201)
+        } else if (index == 0) {
+            setTimeout(() => {
+                images.classList.remove('transition');
+                index = 3;
+                images.style.left = (index * -100) + "%";
+            }, 201)
+        }
+    }
+    function add() {
+        index = (index + 1) % 5;
+    }
+    function desc() {
+        index = (index - 1) % 5;
+    }
+    function timer() {
+        time = setInterval(() => {
+            index = (index + 1) % 5;
+            position();
+        }, 3000)
+    }
+    left.addEventListener('click', () => {
+        desc();
+        position();
+        clearInterval(time);
+        timer();
+    })
+    right.addEventListener('click', () => {
+        add();
+        position();
+        clearInterval(time);
+        timer();
+    });
+    timer();
+
+    var schoolWeek = document.getElementById('schoolWeek');
+    var year = document.getElementById('year');
+    var month = document.getElementById('month');
+    var day = document.getElementById('day');
+    var hour = document.getElementById('hour');
+    var minute = document.getElementById('minute');
+    var second = document.getElementById('second');
+    var uns1h = document.getElementById('uns1h');
+    var uns1m = document.getElementById('uns1m');
+    var uns1s = document.getElementById('uns1s');
+    var uns2h = document.getElementById('uns2h');
+    var uns2m = document.getElementById('uns2m');
+    var uns2s = document.getElementById('uns2s');
+
+    var week = document.getElementById('week');
+
+    function Time() {
+        var dl1 = new Date('2021-12-20 22:00:00');
+        var dl2 = new Date('2021-12-21 00:00:00');
+        var Start = new Date('2021-8-30 00:00:00');
+        var NowDate = new Date();
+        var Interval = NowDate - Start;
+        var Interval2 = dl1 - NowDate;
+        var Interval3 = dl2 - NowDate;
+        if (Interval2 < 0) {
+            document.getElementById('unsubmitted1').innerHTML = '未提交';
+        } else {
+            uns1h.innerHTML = Zero(parseInt(Interval2 / 1000 / 60 / 60 % 24)) + '时';
+            uns1m.innerHTML = Zero(parseInt(Interval2 / 1000 / 60 % 60)) + '分';
+            uns1s.innerHTML = Zero(parseInt(Interval2 / 1000 % 60)) + '秒';
+        }
+        if (Interval3 < 0) {
+            document.getElementById('unsubmitted2').innerHTML = '未提交';
+        } else {
+            uns2h.innerHTML = Zero(parseInt(Interval3 / 1000 / 60 / 60 % 24)) + '时';
+            uns2m.innerHTML = Zero(parseInt(Interval3 / 1000 / 60 % 60)) + '分';
+            uns2s.innerHTML = Zero(parseInt(Interval3 / 1000 % 60)) + '秒';
+        }
+
+        var Years = NowDate.getFullYear();
+        var Months = NowDate.getMonth();
+        var Days = NowDate.getDate();
+        var Hours = NowDate.getHours();
+        var Minutes = NowDate.getMinutes();
+        var Seconds = NowDate.getSeconds();
+        var Weeks = NowDate.getDay();
+        schoolWeek.innerHTML = Zero(parseInt(Interval / 1000 / 60 / 60 / 24 / 7) + 1);
+        year.innerHTML = Years;
+        month.innerHTML = Zero(Months + 1);
+        day.innerHTML = Zero(Days);
+        hour.innerHTML = Zero(Hours);
+        minute.innerHTML = Zero(Minutes);
+        second.innerHTML = Zero(Seconds);
+        week.innerHTML = Week(Weeks);
+    }
+    Time();
+    setInterval(Time, 1000);
+    function Zero(n) {
+        if (n < 10) {
+            return '0' + n;
+        }
+        return '' + n;
+    }
+    function Week(date) {
+        switch (date) {
+            case 0:
+                return ('日')
+                break
+            case 1:
+                return ('一')
+                break
+            case 2:
+                return ('二')
+                break
+            case 3:
+                return ('三')
+                break
+            case 4:
+                return ('四')
+                break
+            case 5:
+                return ('五')
+                break
+            case 6:
+                return ('六')
+                break
+        }
+    }
+</script>
+
+</html>

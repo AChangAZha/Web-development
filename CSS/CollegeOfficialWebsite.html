@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<head>
+    <title>东莞理工学院·网络空间安全学院</title>
+    <link rel="icon" type="image/x-ico" href="logo.png" />
+</head>
+<style>
+    * {
+        margin: 0 auto;
+        padding: 0;
+        /* 取消所有间距 */
+    }
+
+    body {
+        height: 100%;
+        background-image: url(CyberspaceSecurity.jpg);
+        background-repeat: no-repeat;
+        /*背景图片不重复*/
+        background-position: center top;
+        /*水平居中，垂直顶对齐*/
+    }
+
+    .head {
+        padding: 15px;
+        height: 32px;
+        width: 1200px;
+        /* 顶部区域 */
+    }
+
+    .logo_1 {
+        /* 顶部左logo */
+        float: left;
+        /* 向左浮动 */
+        height: 32px;
+        box-shadow: 0 0 1rem #e0e0e0;
+        /* 设置阴影，第一个参数为水平阴影，第二个参数为垂直阴影，第三个为模糊距离，第四个为颜色 */
+        border-radius: 50%;
+        /* 设置圆角 */
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo_2 {
+        /* 顶部右logo */
+        float: right;
+        /* 向右浮动 */
+        height: 32px;
+        box-shadow: 0 0 1rem #e0e0e0;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .login {
+        /* 登录区域 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -303px;
+        margin-top: -250px;
+        /* 设置定位 以整个网页为父亲 设置处于居中位置 */
+        opacity: 0.95;
+        /* 透明度 */
+        border-radius: 10px;
+        /* 圆角 */
+        width: 606px;
+        height: 500px;
+        background-color: rgb(13, 49, 95);
+        border: 2px solid #525662;
+    }
+
+    .button_div {
+        text-align: center;
+    }
+
+    .welcome h2,
+    .welcome h1 {
+        /* 欢迎文字 */
+        font-size: 19px;
+        line-height: 1.5;
+        color: rgb(194, 220, 255) !important;
+        text-align: center;
+        text-shadow: rgb(104, 104, 104) 3px 4px 5px;
+        /* 字体颜色、大小粗细、行间距、居中 */
+    }
+
+    .welcome h1 {
+        /* 欢迎文字 */
+        font-size: 14px;
+    }
+
+    .welcome h2 {
+        font-size: 19px;
+    }
+
+    .welcome {
+        /* 欢迎文字区域 */
+        padding-top: 10px;
+        width: 556px;
+        margin-bottom: 35px;
+    }
+
+    .tip_1 {
+        /* 提醒文字 */
+        font-size: 12px;
+        line-height: 2;
+        color: #a8a8a8 !important;
+        /* 字体颜色、大小粗细、行间距、居中 */
+
+    }
+
+    .tip_2 {
+        /* 提醒文字 */
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 2;
+        color: #ffffff !important;
+        /* 字体颜色、大小粗细、行间距、居中 */
+    }
+
+    .notice {
+        /* 提醒文字区域 */
+        padding-top: 40px;
+        width: 556px;
+    }
+
+    .anchor {
+        /* 链接 */
+        color: #4da0ff;
+        text-decoration: none;
+        /* 取消链接默认样式 */
+    }
+
+    .word {
+        /* 登录文字提示区域 */
+        width: 410px;
+        height: 23px;
+        margin-top: 24px;
+    }
+
+    label {
+        /* 登录文字提示 */
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .box {
+        /* 输入区域 */
+        position: relative;
+        width: 530px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .guide {
+        /* 导航图片 */
+        position: relative;
+        top: 8px;
+        width: 30px;
+        height: 30px;
+    }
+
+    #usernameIco.big {
+        /* 图标变大 */
+        width: 33px;
+        height: 33px;
+        top: 10px;
+        transition: .2s all;
+    }
+
+    #usernameIco.small {
+        /* 图标变小 */
+        top: 8px;
+        width: 30px;
+        height: 30px;
+        transition: .2s all;
+    }
+
+    #passwordIco.big {
+        width: 33px;
+        height: 33px;
+        top: 10px;
+        transition: .2s all;
+    }
+
+    #passwordIco.small {
+        top: 8px;
+        width: 30px;
+        height: 30px;
+        transition: .2s all;
+    }
+
+
+    input {
+        /* 表单 */
+        border-radius: 5px;
+        /* 圆角 */
+        outline: none;
+        /* 取消输入时边框 */
+        width: 450px;
+        height: 30px;
+        background-color: #0c1835;
+        /* 背景颜色 */
+        -webkit-text-fill-color: #fff;
+        /* 文字颜色 */
+        font-size: 16px;
+        border: none;
+        /* 取消边框 */
+        caret-color: white;
+        /* 光标颜色 */
+        font-family: ui-monospace !important;
+    }
+
+    .eye {
+        /* 显示/隐藏密码按钮 */
+        position: absolute;
+        right: -15px;
+        top: 8px;
+        /* 设置绝对定位，.box为父亲 */
+        width: 30px;
+        height: 30px;
+        background-image: url(show.png);
+        background-size: 100% 100%;
+        cursor: pointer;
+    }
+
+    #eye.hidden {
+        /* 隐藏样式 */
+        background-image: url(hidden.png);
+        background-size: 100% 100%;
+    }
+
+    #eye.down {
+        top: 13px;
+        transition: top linear .2s;
+    }
+
+    #eye.up {
+        top: 9px;
+        transition: top linear .2s;
+    }
+
+    .button {
+        /* 登录按钮 */
+        margin-top: 10px;
+        width: 150px;
+        height: 37.34px;
+        color: #a5a5a5;
+        font-weight: 600;
+        background-color: #4da0ff;
+        border-radius: 8px;
+        border: 1px solid #bacaee;
+        line-height: 37.34px;
+        text-align: center;
+        font-family: "Microsoft Yahei";
+        cursor: pointer;
+        transition: 256ms all;
+        /* 渐变动画 */
+    }
+
+    .button:hover {
+        /* 鼠标移至按钮时 */
+        background-color: #3376c2;
+    }
+
+    #username:focus,
+    #password:focus {
+        /* 表单正在输入时 */
+        transition: border linear .2s, box-shadow linear .2s, border linear .1s, height linear .1s;
+        box-shadow: 0 0 5px #8188f0;
+        border: 1px solid #8188f0;
+        width: 452px;
+        height: 33px;
+    }
+</style>
+<script>
+    window.onload = function () {
+        document.getElementById("username").focus();
+    }
+    function check(form) {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        if (!username || username == '') {
+            alert('请输入学工号');
+            form.username.focus();
+            return;
+        }
+        if (!password || password == '') {
+            alert('请输入密码');
+            form.password.focus();
+            return;
+        }
+        if (username != '202041404130') {
+            alert('该用户不存在');
+            form.username.value = '';
+            form.username.focus();
+            return;
+
+        }
+        if (password != '123456') {
+            alert('密码错误');
+            form.password.value = '';
+            form.password.focus();
+            return;
+        }
+        window.location.href = "CollegeOfficialWebsite2.html";
+    }
+    function passwordSwitch() {
+        var password = document.getElementById('password');
+        if (password.type === 'password') {
+            password.setAttribute('type', 'text');
+            eye.classList.add('hidden');
+        } else {
+            password.setAttribute('type', 'password');
+            eye.classList.remove('hidden');
+        }
+        password.focus();
+    }
+    function bigIcon(icon) {
+        icon.classList.remove("small");
+        icon.classList.add('big');
+    }
+    function smallIcon(icon) {
+        icon.classList.remove('big');
+        icon.classList.add('small');
+    }
+
+    function eyeDown() {
+        var eye = document.getElementById('eye');
+        eye.classList.remove('up');
+        eye.classList.add('down');
+
+    }
+    function eyeUp() {
+        var eye = document.getElementById('eye');
+        eye.classList.remove('down');
+        eye.classList.add('up');
+    }
+
+</script>
+
+<body>
+    <div class="head">
+        <div class="logo_1">
+            <a href="https://css.dgut.edu.cn/">
+                <img src="logo.png" width="40px" height="40px">
+            </a>
+        </div>
+        <div class="logo_2">
+            <a href="https://www.dgut.edu.cn/">
+                <img src="dgutlogo.png" height="40px">
+            </a>
+        </div>
+
+    </div>
+    <div class="login">
+        <div class="welcome">
+            <h2>东莞理工学院·网络空间安全学院</h2>
+            <h1>School of Cyberspace Security</h1>
+            <h1>Dongguan University of Technology</h1>
+        </div>
+        <form>
+            <div class="option">
+                <div class="word">
+                    <label>
+                        请输入您的学工号
+                    </label>
+                </div>
+                <div class="box">
+                    <img class="guide" id="usernameIco" src="username.png">
+                    <input id="username" autocomplete="on" onkeydown="javascript:if(event.keyCode==13) check(this.form)"
+                        onfocus="bigIcon(usernameIco);" onBlur="smallIcon(usernameIco);">
+                </div>
+            </div>
+            <div class="option">
+                <div class="word">
+                    <label>
+                        请输入密码
+                    </label>
+                </div>
+                <div class="box">
+                    <img class="guide" id="passwordIco" src="password.png">
+                    <input id="password" type="password" autocomplete="on"
+                        onkeydown="javascript:if(event.keyCode==13) check(this.form)"
+                        onfocus="bigIcon(passwordIco);eyeDown();" onBlur="smallIcon(passwordIco);eyeUp();">
+                    <div class="eye" id="eye" onclick="passwordSwitch()"></div>
+                </div>
+            </div>
+            <div class="button_div">
+                <input type="button" id="button" class="button" value="登录" onclick="check(this.form);">
+            </div>
+        </form>
+        <div class="notice">
+            <h1 class="tip_1">特别提醒</h1>
+            <h1 class="tip_2">1. 请注意甄别东莞理工学院中央认证系统唯一官方域名（<a class="anchor" href="https://cas.dgut.edu.cn"
+                    target="self">cas.dgut.edu.cn</a>）和微信公众号（智慧莞工），慎防钓鱼网站和虚假微信号窃取您的账号和密码信息。</h1>
+            <h1 class="tip_2">2. 本系统支持手机短信找回密码，点此进行 <a class="anchor"
+                    href="https://cas.dgut.edu.cn/home/phone/bindPhone.html" target="self">手机绑定</a> 或 <a class="anchor"
+                    href="https://cas.dgut.edu.cn/home/phone/rebindPhone.html" target="self">手机改绑</a> 。</h1>
+        </div>
+    </div>
+</body>
+
+</html>
